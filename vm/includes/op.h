@@ -25,4 +25,8 @@
 # define NBR_LIVE           21
 # define MAX_CHECKS         10
 
+# define PROG_NAME_LENGTH	(128)
+# define COMMENT_LENGTH		(2048)
+# define COREWAR_EXEC_MAGIC	0xea83f3
+
 #endif //COREWAR_OP_H

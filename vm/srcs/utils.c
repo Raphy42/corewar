@@ -40,15 +40,19 @@ t_uint      word_to_uint(unsigned char *w)
     return (word);
 }
 
-void        hex_print(int n, int base)
+void        hex_print(int n, int base, int precision)
 {
     const char  *c_base = ITOA_BASE;
 
     if (n < base)
+    {
+        while (--precision > 0)
+            ft_putchar(c_base[0]);
         ft_putchar(c_base[n]);
+    }
     else
     {
-        hex_print(n / base, base);
+        hex_print(n / base, base, --precision);
         ft_putchar(c_base[(n % base)]);
     }
 }

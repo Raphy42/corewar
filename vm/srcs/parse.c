@@ -68,6 +68,7 @@ t_champion   *file_get_champion(const char *filename)
     }
     champion = COR_CALLOC(t_champion);
     champion->header = file_get_header(fd);
+    file_move_cursor(fd, sizeof(t_header), SEEK_SET);
     read_file(fd, CHAMP_MAX_SIZE, champion->program);
     close(fd);
     return (champion);

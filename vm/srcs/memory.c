@@ -27,8 +27,16 @@ void                memory_dump(t_vm_ram *ram)
     i = -1;
     while (++i < MEM_SIZE)
     {
-        ft_putstr("0x");
-        hex_print(ram->memory[i], 16);
+        if (!(i % 64))
+        {
+            if (i)
+                ft_putchar('\n');
+            ft_putstr("0x");
+            hex_print(i, 16, 4);
+            ft_putstr(" : ");
+        }
+        hex_print(ram->memory[i], 16, 2);
         ft_putchar(0x20);
     }
+    ft_putchar('\n');
 }

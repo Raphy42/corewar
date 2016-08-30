@@ -8,7 +8,7 @@
 #include <unistd.h>
 
 #ifndef ITOA_BASE
-# define ITOA_BASE      "0123456789abcedefghijklmnopqrstuvwxyz"
+# define ITOA_BASE      "0123456789abcdefghijklmnopqrstuvwxyz"
 #endif
 
 # define COR_CALLOC(x)          (x *)ft_memalloc(sizeof(x))
@@ -20,6 +20,6 @@ typedef unsigned int        t_uint;
 ssize_t     read_file_r(int fd, off_t start, size_t size, unsigned char *s);
 ssize_t     read_file(int fd, size_t size, unsigned char *s);
 t_uint      word_to_uint(unsigned char *w);
-void        hex_print(int n, int base);
+void        hex_print(int n, int base, int precision);
 
 #endif //COREWAR_UTILS_H

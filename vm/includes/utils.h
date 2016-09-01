@@ -14,6 +14,8 @@
 # define COR_CALLOC(x)          (x *)ft_memalloc(sizeof(x))
 # define COR_CALLOC_S(x, s)     (x *)ft_memalloc(sizeof(x) * s)
 # define COR_MALLOC(x)          (x *)malloc(sizeof(x))
+# define STR_EQUAL(s1, s2)      (ft_strcmp(s1, s2) == 0)
+
 
 typedef unsigned int        t_uint;
 

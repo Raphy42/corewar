@@ -63,3 +63,5 @@ gen### C template
 *.hex
 *.dSYM/
 *.su
+
+corewar

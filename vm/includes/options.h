@@ -5,9 +5,8 @@
 #ifndef COREWAR_OPTIONS_H
 #define COREWAR_OPTIONS_H
 
-typedef struct          s_options
-{
-    void                *tg;
-}                       t_options;
+#include "vm.h"
+
+int         parse_vm_options(int argc, char **argv, t_vm *vm);
 
 #endif //COREWAR_OPTIONS_H

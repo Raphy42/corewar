@@ -11,16 +11,8 @@
 
 int    main(int argc, char **argv)
 {
-    (void)argc;
-    t_champion      *c;
-    t_vm            *vm = init_vm();
+    t_vm            *vm = init_vm(argc, argv);
 
-    c = file_get_champion(argv[1]);
-    printf("name: '%s'\nsize: %d\ncomment: '%s'\n",
-           c->header->prog_name,
-           c->header->prog_size,
-           c->header->comment);
-    upload_champ_to_memory(&vm->ram, c, 0);
     memory_dump(&vm->ram);
     return (0);
 }

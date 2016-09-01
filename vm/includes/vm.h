@@ -9,12 +9,16 @@
 #include "parse.h"
 #include "../libft/includes/libft.h"
 
+//TODO fix circular reference
+typedef struct s_champion   t_champion;
+
 /**
  * https://en.wikipedia.org/wiki/Opaque_data_type
  */
 typedef int         t_register;
 typedef int         t_flag;
 typedef int         t_mem_offset;
+typedef int         t_cycle;
 
 typedef struct      s_vm_ram
 {
@@ -26,16 +30,26 @@ typedef struct      s_vm_cpu
     t_register      registers[REG_NUMBER];
     t_register      pc;
     t_flag          flag;
+    int             pid;
 }                   t_vm_cpu;
+
+typedef struct      s_vm_stats
+{
+    t_cycle         cycles;
+    t_cycle         cycle_to_die;
+    t_cycle         lives;
+    t_cycle         dump_interval;
+    int             champion_count;
+}                   t_vm_stats;
 
 typedef struct      s_vm
 {
     t_vm_ram        ram;
-    t_vm_cpu        *cores;
+    t_vm_cpu        cores[MAX_PLAYERS];
+    t_vm_stats      stats;
+    t_champion      *champions[MAX_PLAYERS];
 }                   t_vm;
 
-//TODO fix circular reference
-typedef struct s_champion   t_champion;
 
 /**
  * memory.c
@@ -46,6 +60,6 @@ void                memory_dump(t_vm_ram *ram);
 /**
  * init.c
  */
-t_vm                *init_vm(void);
+t_vm                *init_vm(int argc, char **argv);
 
 #endif //COREWAR_VM_H

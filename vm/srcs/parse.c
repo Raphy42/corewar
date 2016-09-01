@@ -5,7 +5,6 @@
 #include <sys/fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <sys/errno.h>
 #include "../includes/op.h"
 #include "../includes/error.h"
 #include "../includes/parse.h"
@@ -63,7 +62,7 @@ t_champion   *file_get_champion(const char *filename)
     fd = file_open(filename);
     if (!file_check_header(fd))
     {
-        errno = EINVAL;
+        errno = EBADEXEC;
         error_log(filename);
     }
     champion = COR_CALLOC(t_champion);

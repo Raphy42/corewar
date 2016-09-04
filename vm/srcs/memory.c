@@ -2,9 +2,7 @@
 // Created by Raphaël Dantzer on 29/08/16.
 //
 
-#include <stdio.h>
 #include "../includes/vm.h"
-#include "../../libft/includes/libft.h"
 #include "../includes/utils.h"
 
 t_mem_offset        upload_champ_to_memory(t_vm_ram *ram, t_champion *champion, t_mem_offset cursor)

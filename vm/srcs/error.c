@@ -4,6 +4,11 @@
 
 #include "../includes/error.h"
 
+const char *cor_char_code[] = {
+        "champion size mismatch",
+        "illegal opcode"
+};
+
 void        error_log(const char *error)
 {
     if (errno)
@@ -13,6 +18,12 @@ void        error_log(const char *error)
     }
     else
         ft_fprintf(2, "%s: %s: %d\n", error, __FILE__, __LINE__);
+}
+
+void        corewar_exception(t_corewar_errno err)
+{
+    ft_fprintf(2, "fatal error: %s\n", cor_char_code[err]);
+    exit(EXIT_FAILURE);
 }
 
 void        usage(void)

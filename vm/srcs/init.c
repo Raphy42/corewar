@@ -4,8 +4,8 @@
 
 #include "../includes/utils.h"
 #include "../includes/vm.h"
-#include "../includes/error.h"
 #include "../includes/options.h"
+#include "../includes/error.h"
 
 
 static void init_game(t_vm *vm)
@@ -16,13 +16,14 @@ static void init_game(t_vm *vm)
     i = -1;
     while (++i < vm->stats.champion_count)
     {
-        ft_fprintf(2, "champion: '%s'\ncomment: '%s'\nsize: '%d'\npid: %d\n\n",
+        upload_champ_to_memory(&vm->ram, vm->champions[i], cursor * i);
+        ft_bzero(&vm->cores[i], sizeof(t_vm_cpu));
+        vm->cores[i].pc = cursor * i;
+        ft_fprintf(2, "champion: '%s'\ncomment: '%s'\nsize: '%d'\npc: 0x%x\n\n",
                    vm->champions[i]->header->prog_name,
                    vm->champions[i]->header->comment,
                    vm->champions[i]->header->prog_size,
-                   vm->cores[i].pid);
-        upload_champ_to_memory(&vm->ram, vm->champions[i], cursor * i);
-        vm->cores[i].pc = cursor * i;
+                   vm->cores[i].pc);
     }
 }
 

@@ -8,11 +8,18 @@
 #include "../../libft/includes/libft.h"
 #include "../includes/utils.h"
 #include "../includes/vm.h"
+#include "../includes/loop.h"
 
 int    main(int argc, char **argv)
 {
     t_vm            *vm = init_vm(argc, argv);
 
     memory_dump(&vm->ram);
+    for (int i = 0; i < 8; i++)
+    {
+        ft_putnbr(i);
+        decode(&vm->cores[0], &vm->ram);
+        ft_putchar('\n');
+    }
     return (0);
 }

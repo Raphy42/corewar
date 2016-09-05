@@ -46,4 +46,14 @@ void        op_lldi(t_vm_cpu *cpu, t_vm_ram *ram);
 void        op_lfork(t_vm_cpu *cpu, t_vm_ram *ram);
 void        op_aff(t_vm_cpu *cpu, t_vm_ram *ram);
 
+typedef struct				s_op
+{
+    char					*mnemonique;
+    char					nbr_args;
+    int     				type[MAX_ARGS_NUMBER];
+    char					code;
+    int						nbr_cycles;
+    char					octet_codage;
+}							t_op;
+
 #endif //COREWAR_MNEMONIC_H

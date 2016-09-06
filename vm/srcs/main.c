@@ -14,10 +14,9 @@ int    main(int argc, char **argv)
 {
     t_vm            *vm = init_vm(argc, argv);
 
-    memory_dump(&vm->ram);
+    memory_dump(vm);
     for (int i = 0; i < 8; i++)
     {
-        ft_putnbr(i);
         decode(&vm->cores[0], &vm->ram);
         ft_putchar('\n');
     }

@@ -9,6 +9,8 @@
 #include "parse.h"
 #include "../libft/includes/libft.h"
 
+#define DEBUG   1
+
 //TODO fix circular reference
 typedef struct s_champion   t_champion;
 
@@ -55,7 +57,7 @@ typedef struct      s_vm
  * memory.c
  */
 t_mem_offset        upload_champ_to_memory(t_vm_ram *ram, t_champion *champion, t_mem_offset cursor);
-void                memory_dump(t_vm_ram *ram);
+void                memory_dump(t_vm *vm);
 
 /**
  * init.c

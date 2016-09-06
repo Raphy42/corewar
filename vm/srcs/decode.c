@@ -32,22 +32,16 @@ t_op	g_opt_tab[17] =
  * Decode OPC
  * return argument count + 1 (opc)
  */
-static int          get_args(int t, int byte)
+static int          get_args(int byte)
 {
-    int	result;
-    int	ret;
-    int	i;
+    int             args;
+    int             shift;
 
-    i = 8;
-    ret = 0;
-    while ((i -= 2) > 0)
-    {
-        result = (byte >> i) & 0x3;
-        ret += (result == 1) + 2 * (result == 3);
-        if (result == 2)
-            ret += 2 + 2 * (t == 1 || t == 2 || (t >= 6 && t <= 8) || t == 13);
-    }
-    return (ret);
+    args = 0;
+    shift = 8;
+    while (shift-= 2)
+        args += (byte >> shift) & 3;
+    return (args);
 }
 
 static void         memdump(t_vm_ram *ram, int pc, int count)
@@ -75,10 +69,12 @@ void                decode(t_vm_cpu *cpu, t_vm_ram *ram)
      */
     if (word > 0x10 || word == 0)
         corewar_exception(COR_EOP);
+    ft_putstr("0x");
+    hex_print(cpu->pc, 16, 2);
     ft_putstr(g_opt_tab[word].mnemonique);
-    args = get_args(ram->memory[cpu->pc], g_opt_tab[word].nbr_args);
-    memdump(ram, cpu->pc, g_opt_tab[word].nbr_args);
-    cpu->pc += args + 1;
+    args = get_args(ram->memory[cpu->pc]);
+    memdump(ram, cpu->pc, args);
+    cpu->pc += args + (g_opt_tab[word].code_oct ? 1 : 0);
 //    ft_putstr("0x");
 //    hex_print(cpu->pc, 16, 2);
 //    ft_putchar('\n');

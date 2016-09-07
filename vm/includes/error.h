@@ -7,7 +7,7 @@
 
 #include <sys/errno.h>
 #include <stdio.h>
-#include "../../libft/includes/libft.h"
+#include "libft.h"
 
 typedef enum    e_corewar_errno
 {

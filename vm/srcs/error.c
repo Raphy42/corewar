@@ -2,7 +2,7 @@
 // Created by Raphaël Dantzer on 25/07/16.
 //
 
-#include "../includes/error.h"
+#include "error.h"
 
 const char *cor_char_code[] = {
         "champion size mismatch",

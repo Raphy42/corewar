@@ -27,33 +27,24 @@ typedef enum    e_mnemonic
     AFF
 }               t_mnemonic;
 
-void        op_live(t_vm_cpu *cpu, t_vm_ram *ram);
-void        op_ld(t_vm_cpu *cpu, t_vm_ram *ram);
-void        op_st(t_vm_cpu *cpu, t_vm_ram *ram);
-void        op_add(t_vm_cpu *cpu, t_vm_ram *ram);
-void        op_sub(t_vm_cpu *cpu, t_vm_ram *ram);
-void        op_and(t_vm_cpu *cpu, t_vm_ram *ram);
-void        op_or(t_vm_cpu *cpu, t_vm_ram *ram);
-void        op_xor(t_vm_cpu *cpu, t_vm_ram *ram);
-void        op_zjmp(t_vm_cpu *cpu, t_vm_ram *ram);
-void        op_ldi(t_vm_cpu *cpu, t_vm_ram *ram);
-void        op_zjmp(t_vm_cpu *cpu, t_vm_ram *ram);
-void        op_ldi(t_vm_cpu *cpu, t_vm_ram *ram);
-void        op_sti(t_vm_cpu *cpu, t_vm_ram *ram);
-void        op_fork(t_vm_cpu *cpu, t_vm_ram *ram);
-void        op_lld(t_vm_cpu *cpu, t_vm_ram *ram);
-void        op_lldi(t_vm_cpu *cpu, t_vm_ram *ram);
-void        op_lfork(t_vm_cpu *cpu, t_vm_ram *ram);
-void        op_aff(t_vm_cpu *cpu, t_vm_ram *ram);
+int         op_live(t_vm_cpu *cpu, t_vm_ram *ram);
+int         op_ld(t_vm_cpu *cpu, t_vm_ram *ram);
+int         op_st(t_vm_cpu *cpu, t_vm_ram *ram);
+int         op_add(t_vm_cpu *cpu, t_vm_ram *ram);
+int         op_sub(t_vm_cpu *cpu, t_vm_ram *ram);
+int         op_and(t_vm_cpu *cpu, t_vm_ram *ram);
+int         op_or(t_vm_cpu *cpu, t_vm_ram *ram);
+int         op_xor(t_vm_cpu *cpu, t_vm_ram *ram);
+int         op_zjmp(t_vm_cpu *cpu, t_vm_ram *ram);
+int         op_ldi(t_vm_cpu *cpu, t_vm_ram *ram);
+int         op_zjmp(t_vm_cpu *cpu, t_vm_ram *ram);
+int         op_ldi(t_vm_cpu *cpu, t_vm_ram *ram);
+int         op_sti(t_vm_cpu *cpu, t_vm_ram *ram);
+int         op_fork(t_vm_cpu *cpu, t_vm_ram *ram);
+int         op_lld(t_vm_cpu *cpu, t_vm_ram *ram);
+int         op_lldi(t_vm_cpu *cpu, t_vm_ram *ram);
+int         op_lfork(t_vm_cpu *cpu, t_vm_ram *ram);
+int         op_aff(t_vm_cpu *cpu, t_vm_ram *ram);
 
-typedef struct				s_op
-{
-    char					*mnemonique;
-    char					nbr_args;
-    int     				type[MAX_ARGS_NUMBER];
-    char					code;
-    int						nbr_cycles;
-    char					octet_codage;
-}							t_op;
 
 #endif //COREWAR_MNEMONIC_H

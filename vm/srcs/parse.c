@@ -5,11 +5,11 @@
 #include <sys/fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "../includes/op.h"
-#include "../includes/error.h"
-#include "../includes/parse.h"
-#include "../includes/utils.h"
-#include "../../libft/includes/libft.h"
+#include "op.h"
+#include "error.h"
+#include "parse.h"
+#include "utils.h"
+#include "libft.h"
 
 static int     file_check_header(int fd)
 {

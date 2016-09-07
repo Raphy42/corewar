@@ -2,9 +2,9 @@
 // Created by Raphaël Dantzer on 20/08/16.
 //
 
-#include "../includes/error.h"
-#include "../includes/vm.h"
-#include "../includes/utils.h"
+#include "error.h"
+#include "vm.h"
+#include "utils.h"
 
 static int  g_pid;
 

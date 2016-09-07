@@ -2,8 +2,8 @@
 // Created by Raphaël Dantzer on 29/08/16.
 //
 
-#include "../includes/vm.h"
-#include "../includes/utils.h"
+#include "vm.h"
+#include "utils.h"
 
 t_mem_offset        upload_champ_to_memory(t_vm_ram *ram, t_champion *champion, t_mem_offset cursor)
 {
@@ -36,16 +36,11 @@ void                memory_dump(t_vm *vm)
             ft_putstr(" : ");
         }
 #if DEBUG
-        if (vm->cores[champion].pc + (int)vm->champions[champion]->header->prog_size < i)
-            champion += champion == vm->stats.champion_count - 1 ? 0 : 1;
-        else if (vm->cores[champion].pc > i)
-            ;
-        else
-        {
-            if (i == vm->cores[champion].pc)
-                ft_fprintf(1, "\033[%dm", 47);
+        if ((vm->cores[champion].pc <= i) && (i <= (vm->cores[champion].pc + (int)vm->champions[champion]->header->prog_size)))
             ft_fprintf(1, "\033[%dm", 31 + champion);
-        }
+        if (i == (vm->cores[champion].pc + (int)vm->champions[champion]->header->prog_size) && champion < vm->stats.champion_count - 1)
+            champion++;
+
 #endif
         hex_print(vm->ram.memory[i], 16, 2);
 #if DEBUG

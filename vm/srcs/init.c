@@ -2,10 +2,10 @@
 // Created by Raphaël Dantzer on 20/08/16.
 //
 
-#include "../includes/utils.h"
-#include "../includes/vm.h"
-#include "../includes/options.h"
-#include "../includes/error.h"
+#include "utils.h"
+#include "vm.h"
+#include "options.h"
+#include "error.h"
 
 
 static void init_game(t_vm *vm)

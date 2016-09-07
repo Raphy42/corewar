@@ -3,12 +3,12 @@
 //
 
 #include <stdio.h>
-#include "../includes/mnemonic.h"
-#include "../includes/parse.h"
-#include "../../libft/includes/libft.h"
-#include "../includes/utils.h"
-#include "../includes/vm.h"
-#include "../includes/loop.h"
+#include "mnemonic.h"
+#include "parse.h"
+#include "libft.h"
+#include "utils.h"
+#include "vm.h"
+#include "loop.h"
 
 int    main(int argc, char **argv)
 {

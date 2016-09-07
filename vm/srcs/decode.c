@@ -2,10 +2,12 @@
 // Created by Raphaël Dantzer on 04/09/16.
 //
 
-#include "../includes/vm.h"
-#include "../includes/error.h"
-#include "../includes/utils.h"
-#include "../includes/decode.h"
+
+#include <decode.h>
+#include <vm.h>
+#include <utils.h>
+#include <error.h>
+#include <mnemonic.h>
 
 t_op	g_opt_tab[17] =
         {
@@ -32,15 +34,21 @@ t_op	g_opt_tab[17] =
  * Decode OPC
  * return argument count + 1 (opc)
  */
-static int          get_args(int byte)
+int                get_args(int byte, int opcode)
 {
     int             args;
     int             shift;
+    int             word;
 
     args = 0;
     shift = 8;
-    while (shift-= 2)
-        args += (byte >> shift) & 3;
+    while ((shift -= 2) > 0)
+    {
+        word = (byte >> shift) & 3;
+        args += (word == 0x1) + 0x2 * (word == 3);
+        if (word == 0x2)
+            args += 0x2 + 0x2 * (g_opt_tab[opcode].code_oct ? 1 : 0);
+    }
     return (args);
 }
 
@@ -61,6 +69,7 @@ void                decode(t_vm_cpu *cpu, t_vm_ram *ram)
 {
     unsigned char   word;
     int             args;
+    int             toto;
 
     args = 0;
     word = ram->memory[cpu->pc];
@@ -72,10 +81,12 @@ void                decode(t_vm_cpu *cpu, t_vm_ram *ram)
     ft_putstr("0x");
     hex_print(cpu->pc, 16, 2);
     ft_putstr(g_opt_tab[word].mnemonique);
-    args = get_args(ram->memory[cpu->pc]);
+    args = get_args(word, ram->memory[cpu->pc]);
     memdump(ram, cpu->pc, args);
-    cpu->pc += args + (g_opt_tab[word].code_oct ? 1 : 0);
+    toto = op_sti(cpu, ram) + 1;
+    cpu->pc += (toto % MEM_SIZE);
 //    ft_putstr("0x");
 //    hex_print(cpu->pc, 16, 2);
 //    ft_putchar('\n');
+
 }

@@ -3,9 +3,9 @@
 //
 
 #include <unistd.h>
-#include "../includes/error.h"
-#include "../includes/utils.h"
-#include "../libft/includes/libft.h"
+#include "error.h"
+#include "utils.h"
+#include "libft.h"
 
 ssize_t     read_file_r(int fd, off_t start, size_t size, unsigned char *s)
 {

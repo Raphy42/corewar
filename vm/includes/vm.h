@@ -7,7 +7,7 @@
 
 #include "op.h"
 #include "parse.h"
-#include "../libft/includes/libft.h"
+#include "libft.h"
 
 #define DEBUG   1
 
@@ -33,6 +33,7 @@ typedef struct      s_vm_cpu
     t_register      pc;
     t_flag          flag;
     int             pid;
+    t_cycle         busy;
 }                   t_vm_cpu;
 
 typedef struct      s_vm_stats

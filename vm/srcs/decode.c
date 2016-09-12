@@ -36,57 +36,29 @@ t_op	g_opt_tab[17] =
  */
 int                get_args(int byte, int opcode)
 {
-    int             args;
-    int             shift;
-    int             word;
-
-    args = 0;
-    shift = 8;
-    while ((shift -= 2) > 0)
-    {
-        word = (byte >> shift) & 3;
-        args += (word == 0x1) + 0x2 * (word == 3);
-        if (word == 0x2)
-            args += 0x2 + 0x2 * (g_opt_tab[opcode].code_oct ? 1 : 0);
-    }
-    return (args);
+    /**
+     * MAGIC HAPPENS HERE./c
+     */
+    return (byte & opcode);
 }
 
-static void         memdump(t_vm_ram *ram, int pc, int count)
-{
-    int             i;
-
-    i = -1;
-    while (++i < count)
-    {
-        hex_print(ram->memory[pc + i], 16, 2);
-        ft_putchar(0x20);
-    }
-}
+//static void         memdump(t_vm_ram *ram, int pc, int count)
+//{
+//    int             i;
+//
+//    i = -1;
+//    while (++i < count)
+//    {
+//        hex_print(ram->memory[pc + i], 16, 2);
+//        ft_putchar(0x20);
+//    }
+//}
 
 //TODO omg
 void                decode(t_vm_cpu *cpu, t_vm_ram *ram)
 {
     unsigned char   word;
-    int             args;
-    int             toto;
 
-    args = 0;
-    word = ram->memory[cpu->pc];
-    /**
-     * Check for illegal opcode ?
-     */
-    if (word > 0x10 || word == 0)
-        corewar_exception(COR_EOP);
-    ft_putstr("0x");
-    hex_print(cpu->pc, 16, 2);
-    ft_putstr(g_opt_tab[word].mnemonique);
-    args = get_args(word, ram->memory[cpu->pc]);
-    memdump(ram, cpu->pc, args);
-    toto = op_sti(cpu, ram) + 1;
-    cpu->pc += (toto % MEM_SIZE);
-//    ft_putstr("0x");
-//    hex_print(cpu->pc, 16, 2);
-//    ft_putchar('\n');
+    word = ram->memory[cpu->pc + 1];
 
 }

@@ -65,4 +65,9 @@ void                memory_dump(t_vm *vm);
  */
 t_vm                *init_vm(int argc, char **argv);
 
+/**
+ * loop.c
+ */
+int                 game_loop(t_vm *vm);
+
 #endif //COREWAR_VM_H

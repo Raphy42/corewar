@@ -9,7 +9,6 @@
 #include "error.h"
 #include "parse.h"
 #include "utils.h"
-#include "libft.h"
 
 static int     file_check_header(int fd)
 {
@@ -69,6 +68,8 @@ t_champion   *file_get_champion(const char *filename)
     champion->header = file_get_header(fd);
     file_move_cursor(fd, sizeof(t_header), SEEK_SET);
     read_file(fd, CHAMP_MAX_SIZE, champion->program);
+    if (read_file(fd, CHAMP_MAX_SIZE, NULL))
+        corewar_exception(COR_EBADSIZE);
     close(fd);
     return (champion);
 }

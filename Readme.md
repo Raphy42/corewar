@@ -2,7 +2,7 @@
 
 ##Done (vm):
 1. Magic number check (100%)
-2. Vm internals (40%)
+2. Vm internals (60%)
 3. Headers (80%)
 4. Program uploading (50%)
 

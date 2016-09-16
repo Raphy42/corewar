@@ -35,8 +35,8 @@ static int  set_vm_flag(int argc, char **argv, int pos, t_vm *vm)
 static void add_champion(char *filename, t_vm *vm)
 {
     vm->champions[vm->stats.champion_count] = file_get_champion(filename);
-    vm->cores[vm->stats.champion_count].pid = g_pid++;
     vm->stats.champion_count++;
+    vm->cores[vm->stats.champion_count].pid = vm->stats.champion_count;
     if (vm->stats.champion_count > MAX_PLAYERS)
     {
         errno = ENOMEM;

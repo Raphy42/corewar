@@ -7,6 +7,12 @@
 
 #include "vm.h"
 
-void                decode(t_vm_cpu *cpu, t_vm_ram *ram);
+typedef struct      s_op_func
+{
+    int             (* op)(t_vm_cpu *, t_vm_ram *);
+}                   t_op_func;
+
+int                 decode(t_vm_cpu *cpu, t_vm_ram *ram);
+int                 fetch(t_vm_cpu *cpu, t_vm_ram *ram);
 
 #endif //COREWAR_LOOP_H

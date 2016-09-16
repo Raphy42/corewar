@@ -17,7 +17,6 @@ static void init_game(t_vm *vm)
     while (++i < vm->stats.champion_count)
     {
         upload_champ_to_memory(&vm->ram, vm->champions[i], cursor * i);
-        ft_bzero(&vm->cores[i], sizeof(t_vm_cpu));
         vm->cores[i].pc = cursor * i;
         ft_fprintf(2, "champion: '%s'\ncomment: '%s'\nsize: '%d'\npc: 0x%x\n\n",
                    vm->champions[i]->header->prog_name,
@@ -32,6 +31,7 @@ t_vm        *init_vm(int argc, char **argv)
     t_vm    *vm;
 
     vm = COR_CALLOC(t_vm);
+    ft_bzero(&vm->cores, sizeof(t_vm_cpu) * MAX_PLAYERS);
     parse_vm_options(argc, argv, vm);
     vm->ram.memory = COR_CALLOC_S(unsigned char, MEM_SIZE);
     init_game(vm);

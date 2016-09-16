@@ -4,12 +4,12 @@
 
 
 #include <decode.h>
-#include <vm.h>
+#include "decode.h"
 #include <utils.h>
 #include <error.h>
 #include <mnemonic.h>
 
-t_op	g_opt_tab[17] =
+const t_op      g_opt_tab[17] =
         {
                 {0, 0, {T_NONE, T_NONE, T_NONE}, 0, 0, 0, -1},
                 {"live", 1, {T_DIR, T_NONE, T_NONE}, 1, 10, 0, 4},
@@ -30,16 +30,30 @@ t_op	g_opt_tab[17] =
                 {"aff", 1, {T_REG, T_NONE, T_NONE}, 16, 2, 1, 0}
         };
 
+const int       g_param_size[3] = {REG_SIZE, DIR_SIZE, IND_SIZE};
+
+
 /**
  * Decode OPC
  * return argument count + 1 (opc)
  */
-int                get_args(int byte, int opcode)
+void                  get_args(int code, t_vm_cpu *cpu)
 {
-    /**
-     * MAGIC HAPPENS HERE./c
-     */
-    return (byte & opcode);
+    int               shift;
+    int                 i;
+
+    i = 0;
+    shift = 8;
+    code <<= 2;
+    while (shift >= 4)
+    {
+        cpu->args[i] = (code >> shift) & 3;
+        shift -= 2;
+        i++;
+    }
+//    i = -1;
+//    while (cpu->args[++i])
+//        cpu->args[i] = g_param_size[cpu->args[i]];
 }
 
 //static void         memdump(t_vm_ram *ram, int pc, int count)
@@ -55,10 +69,22 @@ int                get_args(int byte, int opcode)
 //}
 
 //TODO omg
-void                decode(t_vm_cpu *cpu, t_vm_ram *ram)
+int                 decode(t_vm_cpu *cpu, t_vm_ram *ram)
 {
     unsigned char   word;
 
-    word = ram->memory[cpu->pc + 1];
-
+    if (!cpu->busy)
+    {
+        word = ram->memory[cpu->pc];
+        if (word < LIVE || word > AFF)
+            return (-1);
+        else
+        {
+            cpu->busy = g_opt_tab[word].nbr_cycles;
+            cpu->op = word;
+            return (word);
+        }
+    }
+    else
+        return (0);
 }

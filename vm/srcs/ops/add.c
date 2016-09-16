@@ -4,7 +4,7 @@
 
 #include "vm.h"
 
-void        op_add(t_vm_cpu *cpu, t_vm_ram *ram)
+int        op_add(t_vm_cpu *cpu, t_vm_ram *ram)
 {
-    (void)cpu; (void)ram;
+    (void)cpu; (void)ram; return (0);
 }

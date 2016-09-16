@@ -6,7 +6,6 @@
 #define COREWAR_DECODE_H
 
 #include "op.h"
-#include "vm.h"
 
 typedef enum                e_arg_type
 {
@@ -26,7 +25,5 @@ typedef struct				s_op
     char					code_oct;
     int                     size;
 }							t_op;
-
-int                get_args(int byte, int opcode);
 
 #endif //COREWAR_DECODE_H

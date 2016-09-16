@@ -18,7 +18,7 @@ static int     file_check_header(int fd)
     magic = 0;
     read_file(fd, 4, m);
     magic = word_to_uint(m);
-    return (magic == COREWAR_EXEC_MAGIC ? 1 : 0);
+    return (magic == COREWAR_EXEC_MAGIC);
 }
 
 static int      file_open(const char *filename)

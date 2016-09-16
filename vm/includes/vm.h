@@ -11,7 +11,6 @@
 
 #define DEBUG   1
 
-//TODO fix circular reference
 typedef struct s_champion   t_champion;
 
 /**
@@ -31,9 +30,10 @@ typedef struct      s_vm_cpu
 {
     t_register      registers[REG_NUMBER];
     t_register      pc;
-    t_flag          flag;
+    int             op;
     int             pid;
     t_cycle         busy;
+    int             args[MAX_ARGS_NUMBER];
 }                   t_vm_cpu;
 
 typedef struct      s_vm_stats
@@ -53,6 +53,8 @@ typedef struct      s_vm
     t_champion      *champions[MAX_PLAYERS];
 }                   t_vm;
 
+
+void                  get_args(int code, t_vm_cpu *cpu);
 
 /**
  * memory.c
